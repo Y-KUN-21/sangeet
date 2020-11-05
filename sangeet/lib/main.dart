@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sangeet/tracks.dart';
 
@@ -10,9 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Sangeet',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
+        brightness: Brightness.dark,
+        accentColor: Colors.grey,
+        splashColor: Colors.grey,
+        iconTheme: IconThemeData(color: Colors.white),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Tracks(),
