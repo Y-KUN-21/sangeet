@@ -20,10 +20,7 @@ class _TracksState extends State<Tracks> {
         future: songsController.getSongs(),
         builder: (context, snapshot) {
           List<SongInfo> songInfo = snapshot.data;
-          print(songInfo[2].title);
-          var _itemExtent = songInfo.length;
-          print(_itemExtent);
-          switch(snapshot.connectionState) {
+          switch (snapshot.connectionState) {
             case ConnectionState.none:
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());
@@ -55,7 +52,7 @@ class _TracksState extends State<Tracks> {
                                 ),
                                 background: Container(
                                   decoration:
-                                  BoxDecoration(color: Colors.grey[900]),
+                                      BoxDecoration(color: Colors.grey[900]),
                                 )),
                           ),
                         ];
@@ -63,16 +60,21 @@ class _TracksState extends State<Tracks> {
                       body: ListView.builder(
                           itemCount: songInfo.length,
                           itemBuilder: (context, index) {
+                            var songs = songInfo[index];
                             return SongTile(
-                                title:
-                                songInfo[index].title.toString() ?? "Unknown",
-                                artist: songInfo[index].artist.toString(),
-                                duration: songInfo[index].duration,
+                                title: songs.title.toString() ?? "Unknown",
+                                artist: songs.artist.toString(),
+                                duration: songs.duration,
                                 onTap: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => SongPage()),
+                                        builder: (context) => SongPage(
+                                              title: songs.title,
+                                              album: songs.album,
+                                              artist: songs.artist,
+                                              url: songs.albumArtwork,
+                                            )),
                                   );
                                 });
                           })),
